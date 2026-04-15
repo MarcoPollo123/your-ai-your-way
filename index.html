@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your AI, Your Way — Personalised AI Setup in 30 Minutes</title>
+  <meta name="description" content="Turn a generic AI chatbot into a personal assistant that actually gets you. 5 personality setups. No tech skills required. $67 AUD." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      color: #1a1a2e;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── COLOURS ── */
+    :root {
+      --red: #c0392b;
+      --red-dark: #96281b;
+      --navy: #1a1a2e;
+      --navy-mid: #16213e;
+      --navy-light: #0f3460;
+      --white: #ffffff;
+      --off-white: #f8f9fa;
+      --grey: #6c757d;
+      --grey-light: #e9ecef;
+      --gold: #f0a500;
+    }
+
+    /* ── UTILITIES ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .text-center { text-align: center; }
+    .text-red { color: var(--red); }
+    .text-navy { color: var(--navy); }
+    .badge {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      color: white;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-cta {
+      background: var(--red);
+      color: white;
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+      color: white;
+      padding: 80px 20px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 60% 40%, rgba(192,57,43,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red);
+      text-decoration: underline;
+      text-decoration-color: rgba(192,57,43,0.4);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: rgba(255,255,255,0.8);
+      max-width: 640px;
+      margin: 0 auto 36px;
+      line-height: 1.5;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      text-decoration: none;
+      padding: 18px 44px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(192,57,43,0.5); }
+    .hero-price {
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+    }
+    .hero-price s { color: rgba(255,255,255,0.35); }
+    .hero-social-proof {
+      margin-top: 32px;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+    }
+    .hero-stars { color: var(--gold); letter-spacing: 2px; }
+
+    /* ── PROBLEM STRIP ── */
+    .problem-strip {
+      background: var(--off-white);
+      border-top: 3px solid var(--red);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .problem-strip p {
+      font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 600;
+      color: var(--navy);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .problem-strip p span { color: var(--red); }
+
+    /* ── SECTIONS ── */
+    section { padding: 70px 20px; }
+    section.alt { background: var(--off-white); }
+    .section-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .section-intro {
+      font-size: 17px;
+      color: var(--grey);
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── QUIZ TEASER ── */
+    .quiz-card {
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 40px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .quiz-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .quiz-question {
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+    }
+    .quiz-cta-note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+    }
+    .quiz-badge {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* ── PERSONALITY CARDS ── */
+    .types-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    @media (min-width: 600px) {
+      .types-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .type-card {
+      background: white;
+      border: 1px solid var(--grey-light);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border-top: 4px solid var(--red);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .type-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .type-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .type-name {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .type-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .type-desc {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.55;
+    }
+    .type-card-wide {
+      grid-column: 1 / -1;
+    }
+
+    /* ── WHAT'S INSIDE ── */
+    .inside-list {
+      list-style: none;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .inside-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--grey-light);
+    }
+    .inside-list li:last-child { border-bottom: none; }
+    .inside-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .inside-title {
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .inside-desc {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.5;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    @media (min-width: 700px) {
+      .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--grey-light);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .testimonial-stars {
+      color: var(--gold);
+      font-size: 16px;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .testimonial-text {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .testimonial-author {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .testimonial-role {
+      font-size: 12px;
+      color: var(--grey);
+    }
+
+    /* ── PRICING ── */
+    .pricing-card {
+      background: var(--navy);
+      color: white;
+      border-radius: 16px;
+      padding: 48px 36px;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--red);
+    }
+    .pricing-badge {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .pricing-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .pricing-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+    }
+    .pricing-price-was {
+      font-size: 16px;
+      color: rgba(255,255,255,0.35);
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .pricing-price {
+      font-size: 58px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .pricing-currency {
+      font-size: 22px;
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .pricing-aud {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
+    }
+    .pricing-includes {
+      text-align: left;
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .pricing-includes li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-includes li::before {
+      content: '✓';
+      color: var(--red);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .pricing-btn {
+      display: block;
+      background: var(--red);
+      color: white;
+      text-decoration: none;
+      padding: 18px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pricing-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .pricing-guarantee {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--grey-light);
+      padding: 22px 0;
+    }
+    .faq-q {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .faq-a {
+      font-size: 15px;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 36px 20px;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.55); }
+    footer .footer-logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 8px;
+    }
+    footer .footer-logo span { color: var(--red); }
+  </style>
+</head>
+<body>
+
+<!-- ─────────── NAV ─────────── -->
+<nav>
+  <div class="nav-logo">Your AI,<span> Your Way</span></div>
+  <a href="https://jarvisai.gumroad.com/l/your-ai-your-way" class="nav-cta">Get It — $67 AUD →</a>
+</nav>
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">🇦🇺 Built for Australians &nbsp;·&nbsp; No Tech Skills Required</p>
+    <h1>Your AI Doesn't Know You.<br><em>Mine Does.</em><br>Here's How to Change That.</h1>
+    <p class="hero-sub">Turn a generic, robotic AI chatbot into an assistant that actually <strong>gets you</strong> — your personality, your goals, your language. Five complete personality setups. Zero coding.</p>
+    <a href="https://jarvisai.gumroad.com/l/your-ai-your-way" class="hero-cta">Get Instant Access — $67 AUD →</a>
+    <p class="hero-price"><s>$97 AUD</s> &nbsp;·&nbsp; One-time purchase &nbsp;·&nbsp; Instant PDF download</p>
+    <div class="hero-social-proof">
+      <div class="hero-stars">★★★★★</div>
+      Rated 5 stars by early readers &nbsp;·&nbsp; Trusted by Australians across every walk of life
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PROBLEM STRIP ─────────── -->
+<div class="problem-strip">
+  <div class="container">
+    <p>AI out of the box is built for <span>nobody in particular</span> — which means it works perfectly for <span>nobody</span>. This guide fixes that.</p>
+  </div>
+</div>
+
+<!-- ─────────── QUIZ TEASER ─────────── -->
+<section id="quiz" class="alt">
+  <div class="container text-center">
+    <p class="section-label">Step One</p>
+    <h2>Which Type Are You?</h2>
+    <p class="section-intro">Answer 7 honest questions. Find your AI personality type. Then get a complete, done-for-you setup that matches exactly who you are.</p>
+    <div class="quiz-card">
+      <div class="quiz-badge">Sample Questions from the Guide</div>
+      <h3>The Personality Quiz</h3>
+      <div class="quiz-question">When something goes wrong, your first instinct is to… fix it immediately, sit with it, tackle the practical next step, find what's interesting about it, or check on everyone else first?</div>
+      <div class="quiz-question">Your ideal Saturday looks like… getting more done before midday than most, slow morning and journalling, tackling a home project, losing hours in an idea you love, or making everyone else's Saturday work?</div>
+      <div class="quiz-question">What you want most from an AI is… direct answers, someone who listens properly, practical task help, a creative collaborator, or an extra brain that catches what falls through the cracks?</div>
+      <p class="quiz-cta-note">All 7 questions + your personalised setup are inside the guide →</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 5 TYPES ─────────── -->
+<section id="types">
+  <div class="container text-center">
+    <p class="section-label">Five Personality Setups</p>
+    <h2>One of These Is You.</h2>
+    <p class="section-intro">Each type gets a complete, done-for-you AI personality — written by humans, for humans. Not a generic template. The real thing.</p>
+    <div class="types-grid">
+
+      <div class="type-card">
+        <span class="type-icon">🦁</span>
+        <div class="type-name">Type A</div>
+        <div class="type-title">The Warrior</div>
+        <p class="type-desc">Driven. Results-focused. No patience for waffle. Your AI is your peer — it talks straight, tracks your goals, calls you out on excuses, and celebrates wins like they mean something.</p>
+      </div>
+
+      <div class="type-card">
+        <span class="type-icon">💚</span>
+        <div class="type-name">Type B</div>
+        <div class="type-title">The Healer</div>
+        <p class="type-desc">Reflective, emotionally intelligent, or going through something. Your AI doesn't rush to fix you. It listens, sits with you in the hard stuff, and never gives advice you didn't ask for.</p>
+      </div>
+
+      <div class="type-card">
+        <span class="type-icon">🔨</span>
+        <div class="type-name">Type C</div>
+        <div class="type-title">The Builder</div>
+        <p class="type-desc">Practical. Hardworking. No-nonsense. Built for tradies, small business owners, and anyone who gets things done. Straight answers, real-world tasks, zero corporate-speak.</p>
+      </div>
+
+      <div class="type-card">
+        <span class="type-icon">🎨</span>
+        <div class="type-name">Type D</div>
+        <div class="type-title">The Creative</div>
+        <p class="type-desc">Idea-driven. Gloriously all-over-the-place. Your AI matches your energy, catches your wild ideas before they disappear, and brings creative heat to every single conversation.</p>
+      </div>
+
+      <div class="type-card type-card-wide">
+        <span class="type-icon">❤️</span>
+        <div class="type-name">Type E</div>
+        <div class="type-title">The Caregiver</div>
+        <p class="type-desc">You hold everything together for everyone else. Your AI is the calm, organised, non-judgmental assistant that helps you manage the endless list — and occasionally asks when <em>you</em> last took a breath.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── WHAT'S INSIDE ─────────── -->
+<section id="inside" class="alt">
+  <div class="container text-center">
+    <p class="section-label">What You Get</p>
+    <h2>Everything You Need.<br>Nothing You Don't.</h2>
+    <p class="section-intro">For each of the five personality types, you get three complete files — ready to paste in and use within 30 minutes.</p>
+    <ul class="inside-list">
+      <li>
+        <span class="inside-icon">🧠</span>
+        <div>
+          <div class="inside-title">The Personality Quiz (7 Questions)</div>
+          <p class="inside-desc">Fast, honest, surprisingly accurate. Identifies your dominant AI type in about 3 minutes. No wrong answers — just you being real.</p>
+        </div>
+      </li>
+      <li>
+        <span class="inside-icon">📄</span>
+        <div>
+          <div class="inside-title">SOUL.md — Your AI's Personality File</div>
+          <p class="inside-desc">The file that tells your AI exactly who it is, how to speak to you, what to push on, and what to never do. One paste. Completely transforms how your AI sounds.</p>
+        </div>
+      </li>
+      <li>
+        <span class="inside-icon">💓</span>
+        <div>
+          <div class="inside-title">HEARTBEAT.md — Your Check-In File</div>
+          <p class="inside-desc">The file that tells your AI what to watch for, when to check in proactively, and how to track what matters most to you — without you having to ask.</p>
+        </div>
+      </li>
+      <li>
+        <span class="inside-icon">🗂️</span>
+        <div>
+          <div class="inside-title">MEMORY.md Template — Your Context File</div>
+          <p class="inside-desc">A personalised template you fill in once. Your goals, key people, projects, preferences. This is how your AI learns who you actually are.</p>
+        </div>
+      </li>
+      <li>
+        <span class="inside-icon">📋</span>
+        <div>
+          <div class="inside-title">Plain-English Setup Instructions</div>
+          <p class="inside-desc">Exact steps in plain language. No jargon, no assumptions, no "just open the terminal." If you can copy and paste, you can do this.</p>
+        </div>
+      </li>
+      <li>
+        <span class="inside-icon">💬</span>
+        <div>
+          <div class="inside-title">Real Conversation Examples</div>
+          <p class="inside-desc">Actual before-and-after examples for each type — so you know exactly what your AI will sound like before you even start.</p>
+        </div>
+      </li>
+      <li>
+        <span class="inside-icon">🚀</span>
+        <div>
+          <div class="inside-title">Bonus: Level Up Your AI Over Time</div>
+          <p class="inside-desc">Tips for getting better answers, updating your setup as you grow, and switching personality types if your needs change. Your AI grows with you.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────── TESTIMONIALS ─────────── -->
+<section id="testimonials">
+  <div class="container text-center">
+    <p class="section-label">What People Are Saying</p>
+    <h2>Real Australians.<br>Real Results.</h2>
+    <p class="section-intro">From tradies to creatives to time-poor parents — here's what happens when your AI finally matches who you are.</p>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I've been using AI for months and it always felt like talking to a very polite robot. After 20 minutes with this guide, it actually sounds like someone who knows me. Weird to say about an AI — but it genuinely gets me now."</p>
+        <div class="testimonial-author">Donna R.</div>
+        <div class="testimonial-role">Brisbane, QLD &nbsp;·&nbsp; The Healer</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I'm a sparky, not a tech guy. I was ready to give up on AI entirely. The Builder setup took me about 25 minutes. Now I use it every day for quotes, client messages, and keeping track of jobs. Genuinely useful."</p>
+        <div class="testimonial-author">Craig T.</div>
+        <div class="testimonial-role">Newcastle, NSW &nbsp;·&nbsp; The Builder</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Got the Creative type and it's like having a creative partner who's available at 3am and never gets tired of my half-formed ideas. Worth every dollar just for the SOUL file alone."</p>
+        <div class="testimonial-author">Maya L.</div>
+        <div class="testimonial-role">Melbourne, VIC &nbsp;·&nbsp; The Creative</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PRICING ─────────── -->
+<section id="pricing" class="alt">
+  <div class="container text-center">
+    <p class="section-label">Pricing</p>
+    <h2>One Price. Instant Access.<br>No Subscription.</h2>
+    <p class="section-intro">A one-time purchase that gives you a personalised AI assistant — permanently.</p>
+
+    <div class="pricing-card">
+      <div class="pricing-badge">One-Time Purchase</div>
+      <div class="pricing-title">Your AI, Your Way</div>
+      <p class="pricing-sub">Complete PDF guide + all setup files</p>
+      <p class="pricing-price-was">Valued at $97 AUD</p>
+      <div class="pricing-price"><span class="pricing-currency">$</span>67</div>
+      <p class="pricing-aud">AUD &nbsp;·&nbsp; One-time &nbsp;·&nbsp; Instant download</p>
+      <ul class="pricing-includes">
+        <li>7-question personality quiz</li>
+        <li>All 5 complete personality setups (SOUL, HEARTBEAT, MEMORY)</li>
+        <li>Plain-English setup guide — no tech skills required</li>
+        <li>Real conversation examples for every type</li>
+        <li>Bonus: Level Up section</li>
+        <li>Free updates — new versions at no extra cost</li>
+      </ul>
+      <a href="https://jarvisai.gumroad.com/l/your-ai-your-way" class="pricing-btn">Get Instant Access — $67 AUD →</a>
+      <p class="pricing-guarantee">🔒 Secure checkout via Gumroad &nbsp;·&nbsp; Instant PDF delivery</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FAQ ─────────── -->
+<section id="faq">
+  <div class="container text-center">
+    <p class="section-label">FAQ</p>
+    <h2>Questions? Answered.</h2>
+    <div class="faq-list" style="text-align: left; margin-top: 36px;">
+
+      <div class="faq-item">
+        <p class="faq-q">Do I need to know anything about AI to use this?</p>
+        <p class="faq-a">Nope. The guide is written for people who aren't tech-savvy. If you can copy and paste text, you can do this. Every step is explained in plain English with zero assumptions.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Which AI platform does this work with?</p>
+        <p class="faq-a">This guide is built for OpenClaw — a personalised AI platform. Full setup instructions and links are included in the guide. You don't need to figure anything out yourself.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">What if I'm a mix of more than one type?</p>
+        <p class="faq-a">The quiz is designed to identify your dominant type, but you can absolutely borrow elements from a second type. The guide explains how to customise your files to blend personality traits.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">How long does setup actually take?</p>
+        <p class="faq-a">Most people are done in 20–30 minutes. The quiz takes 3 minutes. Filling in your MEMORY.md (your personal context file) takes about 10–15 minutes if you're thorough. The rest is copy-paste.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Can I change my personality type later?</p>
+        <p class="faq-a">Yes — and many people do. As your life or goals change, you can switch types with a simple file swap. The guide walks you through exactly how. No cost, no drama.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FINAL CTA ─────────── -->
+<section style="background: var(--navy); color: white; text-align: center; padding: 80px 20px;">
+  <div class="container">
+    <p style="font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 16px;">Don't Leave Your AI Generic</p>
+    <h2 style="color: white; font-size: clamp(26px, 4vw, 42px); max-width: 640px; margin: 0 auto 20px;">Your AI Should Sound Like It Was Built for You.</h2>
+    <p style="font-size: 17px; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 36px;">Because after today, it will be. 30 minutes. Zero tech skills. One setup that actually works.</p>
+    <a href="https://jarvisai.gumroad.com/l/your-ai-your-way" style="display: inline-block; background: var(--red); color: white; text-decoration: none; padding: 18px 48px; border-radius: 8px; font-size: 18px; font-weight: 800; letter-spacing: -0.3px; box-shadow: 0 4px 20px rgba(192,57,43,0.4);">Get Instant Access — $67 AUD →</a>
+    <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.35);"><s>$97 AUD</s> &nbsp;·&nbsp; One-time purchase &nbsp;·&nbsp; Instant PDF download</p>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer>
+  <div class="footer-logo">Jarvis <span>AI</span></div>
+  <p style="margin-bottom: 8px;">Created by Marco Pollard &nbsp;·&nbsp; <a href="mailto:support@jarvisai.com.au">support@jarvisai.com.au</a></p>
+  <p>© 2024 Jarvis AI. All rights reserved. &nbsp;·&nbsp; Personal use only. Not for redistribution.</p>
+</footer>
+
+</body>
+</html>
